@@ -14,6 +14,10 @@ struct cpu {
 	uint32_t hi;
 	uint32_t lo;
 
+	// pipeline emulation
+	uint32_t cur_instr;
+	uint32_t next_instr;
+
 	struct devtree devtree;
 };
 

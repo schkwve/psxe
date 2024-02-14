@@ -17,6 +17,9 @@ void cpu_init(struct devtree devtree)
 	cpu.pc = BIOS_START;
 	cpu.hi = 0;
 	cpu.lo = 0;
+
+	cpu.cur_instr = 0;
+	cpu.next_instr = 0;
 }
 
 uint32_t cpu_fetch_instr(uint32_t addr)
@@ -110,7 +113,8 @@ uint32_t cpu_get_reg(uint8_t index)
 
 void cpu_cycle(void)
 {
-	uint32_t instr = cpu_fetch_instr(cpu.pc);
-	cpu_exec(instr);
+	cpu.cur_instr = cpu.next_instr;
+	cpu.next_instr = cpu_fetch_instr(cpu.pc);
+	cpu_exec(cpu.cur_instr);
 	cpu.pc += 4;
 }
