@@ -17,6 +17,8 @@ struct cpu {
 	struct devtree devtree;
 };
 
+extern struct cpu cpu;
+
 void cpu_init(struct devtree devtree);
 uint32_t cpu_fetch_instr(uint32_t addr);
 void cpu_exec(uint32_t instr);
