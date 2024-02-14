@@ -16,6 +16,8 @@ int main(int argc, char *argv[])
 	struct bios bios;
 	bios_open(&bios, argv[1]);
 	devtree.bios = bios;
+
+	memory_init(&devtree.ram);
 	
 	cpu_init(devtree);
 
